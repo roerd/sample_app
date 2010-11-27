@@ -1,6 +1,4 @@
 SampleApp::Application.routes.draw do
-  resources :rspecs
-
   get "pages/home"
 
   get "pages/contact"
