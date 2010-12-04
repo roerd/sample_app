@@ -32,11 +32,11 @@ class User < ActiveRecord::Base
 
   private
 
-  def encrypt_password
-    self.encrypted_password = encrypt(password)
-  end
+    def encrypt_password
+      self.encrypted_password = encrypt(password)
+    end
 
-  def encrypt(string)
-    string # Only a temporary implementation!
-  end
+    def encrypt(string)
+      string # Only a temporary implementation!
+    end
 end
