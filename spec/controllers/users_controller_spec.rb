@@ -93,6 +93,11 @@ describe UsersController do
         post :create, :user => @attr
         response.should render_template('new')
       end
+
+      it "should clear the password field" do
+        post :create, :user => @attr.merge(:password => "invalid")
+        assigns(:user).password.should be_blank
+      end
     end
 
     describe "success" do
