@@ -60,10 +60,6 @@ class UsersController < ApplicationController
   
   private
 
-  def authenticate
-    deny_access unless signed_in?
-  end
-
   def non_signed_in
     redirect_to(root_path) unless not signed_in?
   end
