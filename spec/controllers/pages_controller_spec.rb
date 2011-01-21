@@ -18,6 +18,25 @@ describe PagesController do
       response.should have_selector("title",
                                     :content => @base_title + " | Home")
     end
+
+    it "should show a signed in user's paginated microposts" do
+      user = Factory(:user)
+      test_sign_in(user)
+      31.times do
+        Factory(:micropost, :user => user, :content => "Lorem ipsum")
+      end
+      get :home
+      response.should have_selector("div.pagination")
+      response.should have_selector("span.disabled", :content => "Previous")
+      response.should have_selector("a", {
+                                      :href => "/?page=2",
+                                      :content => "2"
+                                    })
+      response.should have_selector("a", {
+                                      :href => "/?page=2",
+                                      :content => "Next"
+                                    })
+    end
   end
 
   describe "GET 'contact'" do
