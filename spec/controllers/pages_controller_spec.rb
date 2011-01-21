@@ -37,6 +37,14 @@ describe PagesController do
                                       :content => "Next"
                                     })
     end
+
+    it "should display delete links for the signed in user's microposts" do
+      user = Factory(:user)
+      test_sign_in(user)
+      Factory(:micropost, :user => user, :content => "Lorem ipsum")
+      get :home
+      response.should have_selector("a", :content => "delete")
+    end
   end
 
   describe "GET 'contact'" do
