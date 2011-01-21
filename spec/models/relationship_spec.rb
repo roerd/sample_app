@@ -35,4 +35,17 @@ describe Relationship do
       @relationship.followed.should == @followed
     end
   end
+
+  describe "validations" do
+
+    it "should require a follower id" do
+      @relationship.follower_id = nil
+      @relationship.should_not be_valid
+    end
+
+    it "should require a followed id" do
+      @relationship.followed_id = nil
+      @relationship.should_not be_valid
+    end
+  end
 end
