@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   has_many :microposts, :dependent => :destroy
+  has_many :relationships, {
+    :foreign_key => "follower_id",
+    :dependent => :destroy
+  }
   
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   
