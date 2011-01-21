@@ -1,15 +1,15 @@
-function update_counter(field) {
-    var text = 140 - $F(field).length + " characters left.";
-    $('micropost_counter').update(text);
-}
-
 document.observe("dom:loaded", function() {
     var content = $('micropost_content');
-    update_counter(content);
+    var counter = $('micropost_counter');
+    function update_counter() {
+        var text = 140 - $F(content).length + " characters left.";
+        counter.update(text);
+    }
+    update_counter();
     content.observe('keypress', function() {
-        update_counter(this);
+        update_counter();
     });
     content.observe('keyup', function() {
-        update_counter(this);
+        update_counter();
     });
 });
