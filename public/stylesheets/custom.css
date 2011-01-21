@@ -133,7 +133,7 @@ td.sidebar {
 }
 
 .profile img.gravatar {
-  border: 1px solid #999
+  border: 1px solid #999;
   margin-bottom: -15px;
 }
 
@@ -244,4 +244,12 @@ form.new_micropost {
 form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
+}
+
+div.counter {
+  text-align: right;
+}
+
+#micropost_counter {
+  margin: 0;
 }
