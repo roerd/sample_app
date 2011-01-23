@@ -256,5 +256,12 @@ describe User do
       @user.follow!(@followed)
       @followed.followers.should include(@user)
     end
+
+    it "should destroy associated relationships" do
+      @user.follow!(@followed)
+      @user.destroy
+      Relationship.all(:conditions =>
+                       ["followed_id = ?", @followed]).should be_empty
+    end
   end
 end
