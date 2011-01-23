@@ -59,20 +59,21 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.following.paginate(:page => params[:page])
-    render 'show_follow'
+    show_follow(:following)
   end
   
   def followers
-    @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(:page => params[:page])
-    render 'show_follow'
+    show_follow(:followers)
   end
   
   private
+
+  def show_follow(action)
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.send(action).paginate(:page => params[:page])
+    render 'show_follow'
+  end
 
   def non_signed_in
     redirect_to(root_path) unless not signed_in?
